@@ -429,7 +429,12 @@ function register_consent() {
 			*/
 		}
 	}
-	$updateUrlRules = get_option('sm_options');
+
+	$updateUrlRules = get_option('sm_options', array());
+    if (!is_array($updateUrlRules)) {
+        $updateUrlRules = array();
+    }
+
 	if(!isset($updateUrlRules['sm_b_rewrites2']) || $updateUrlRules['sm_b_rewrites2'] == false){
 		GoogleSitemapGeneratorLoader::activation_indexnow_setup();
 
